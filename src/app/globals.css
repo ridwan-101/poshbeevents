@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* Brand palette taken from the PEB logo: magenta monogram, purple flourish, black ground. */
+@theme {
+  --color-ink: #120614;
+  --color-plum-950: #1a0820;
+  --color-plum-900: #2b0d33;
+  --color-plum-800: #43164f;
+  --color-plum-600: #7b2a8c;
+  --color-magenta: #e0218a;
+  --color-magenta-600: #c01674;
+  --color-blush: #fbeaf3;
+  --color-cream: #fbf7f3;
+  --color-sand: #efe6dc;
+  --color-muted: #6f6271;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-script: var(--font-script), cursive;
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight text-balance;
+  }
+  ::selection {
+    @apply bg-magenta text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-magenta;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+}
+@utility eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.25em] text-magenta;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200;
+}
+@utility btn-primary {
+  @apply btn bg-magenta text-white hover:bg-magenta-600;
+}
+@utility btn-ghost {
+  @apply btn border border-white/30 text-white hover:bg-white/10;
+}
+@utility btn-outline {
+  @apply btn border border-ink/15 text-ink hover:border-magenta hover:text-magenta;
+}
+@utility field {
+  @apply w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 transition-colors focus:border-magenta focus:outline-none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
